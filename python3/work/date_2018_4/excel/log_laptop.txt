@@ -1,0 +1,77 @@
+****************This is a log of filename that has been resolved*******************
+G:\BaiduNetdiskDownload\data\fund\Alabama.xls   Reading Start Time:2018-05-19 14:06:43 Readind End Time:2018-05-19 15:00:53
+G:\BaiduNetdiskDownload\data\fund\Arizona.xls   Reading Start Time:2018-05-19 15:01:03 Readind End Time:2018-05-19 16:33:47
+G:\BaiduNetdiskDownload\data\fund\Arkansas.xls   Reading Start Time:2018-05-19 16:33:57 Readind End Time:2018-05-19 16:39:14
+G:\BaiduNetdiskDownload\data\company\Akansas.xls   Reading Start Time:2018-05-20 23:40:42 Readind End Time:2018-05-20 23:40:53
+G:\BaiduNetdiskDownload\data\company\Alabama.xls   Reading Start Time:2018-05-20 23:41:03 Readind End Time:2018-05-20 23:41:54
+G:\BaiduNetdiskDownload\data\company\Alaska.xls   Reading Start Time:2018-05-20 23:42:04 Readind End Time:2018-05-20 23:42:05
+G:\BaiduNetdiskDownload\data\company\Arizona.xls   Reading Start Time:2018-05-20 23:42:15 Readind End Time:2018-05-20 23:42:51
+G:\BaiduNetdiskDownload\data\company\Colorado.xls   Reading Start Time:2018-05-20 23:43:01 Readind End Time:2018-05-20 23:49:08
+G:\BaiduNetdiskDownload\data\company\Connecticut.xls   Reading Start Time:2018-05-20 23:49:18 Readind End Time:2018-05-20 23:54:39
+G:\BaiduNetdiskDownload\data\company\Delaware.xls   Reading Start Time:2018-05-20 23:54:49 Readind End Time:2018-05-20 23:55:35
+G:\BaiduNetdiskDownload\data\company\Florida.xls   Reading Start Time:2018-05-20 23:55:45 Readind End Time:2018-05-21 00:17:42
+G:\BaiduNetdiskDownload\data\company\Georgia.xls   Reading Start Time:2018-05-21 00:17:52 Readind End Time:2018-05-21 00:24:53
+G:\BaiduNetdiskDownload\data\company\Hawaii.xls   Reading Start Time:2018-05-21 00:25:03 Readind End Time:2018-05-21 00:25:04
+G:\BaiduNetdiskDownload\data\company\Idaho.xls   Reading Start Time:2018-05-21 00:25:14 Readind End Time:2018-05-21 00:25:18
+G:\BaiduNetdiskDownload\data\company\Illinois.xls   Reading Start Time:2018-05-21 00:25:28 Readind End Time:2018-05-21 00:36:43
+G:\BaiduNetdiskDownload\data\company\Indiana.xls   Reading Start Time:2018-05-21 00:36:53 Readind End Time:2018-05-21 00:38:44
+G:\BaiduNetdiskDownload\data\company\Iowa.xls   Reading Start Time:2018-05-21 00:38:54 Readind End Time:2018-05-21 00:39:36
+G:\BaiduNetdiskDownload\data\company\Kansas.xls   Reading Start Time:2018-05-21 00:39:46 Readind End Time:2018-05-21 00:41:16
+G:\BaiduNetdiskDownload\data\company\Kentucky.xls   Reading Start Time:2018-05-21 00:41:26 Readind End Time:2018-05-21 00:44:35
+G:\BaiduNetdiskDownload\data\company\Louisiana.xls   Reading Start Time:2018-05-21 00:44:45 Readind End Time:2018-05-21 00:45:43
+G:\BaiduNetdiskDownload\data\company\Maine.xls   Reading Start Time:2018-05-21 00:45:53 Readind End Time:2018-05-21 00:46:16
+G:\BaiduNetdiskDownload\data\company\Maryland.xls   Reading Start Time:2018-05-21 00:46:26 Readind End Time:2018-05-21 01:02:58
+G:\BaiduNetdiskDownload\data\company\Massachusetts.xls   Reading Start Time:2018-05-21 01:03:08 Readind End Time:2018-05-21 02:32:48
+G:\BaiduNetdiskDownload\data\company\Michigan.xls   Reading Start Time:2018-05-21 02:32:58 Readind End Time:2018-05-21 02:37:48
+G:\BaiduNetdiskDownload\data\company\Minnesota.xls   Reading Start Time:2018-05-21 02:37:58 Readind End Time:2018-05-21 02:47:53
+G:\BaiduNetdiskDownload\data\company\Mississippi.xls   Reading Start Time:2018-05-21 02:48:03 Readind End Time:2018-05-21 02:48:12
+G:\BaiduNetdiskDownload\data\company\Missouri.xls   Reading Start Time:2018-05-21 02:48:22 Readind End Time:2018-05-21 02:51:35
+G:\BaiduNetdiskDownload\data\company\Montana.xls   Reading Start Time:2018-05-21 02:51:45 Readind End Time:2018-05-21 02:51:56
+G:\BaiduNetdiskDownload\data\company\Nebraska.xls   Reading Start Time:2018-05-21 02:52:06 Readind End Time:2018-05-21 02:52:40
+G:\BaiduNetdiskDownload\data\company\Nevada.xls   Reading Start Time:2018-05-21 02:52:50 Readind End Time:2018-05-21 02:53:57
+G:\BaiduNetdiskDownload\data\company\New Hampshire.xls   Reading Start Time:2018-05-21 02:54:07 Readind End Time:2018-05-21 02:55:23
+G:\BaiduNetdiskDownload\data\company\New Jersey.xls   Reading Start Time:2018-05-21 08:14:18 Readind End Time:2018-05-21 08:42:35
+G:\BaiduNetdiskDownload\data\company\New Mexico.xls   Reading Start Time:2018-05-21 08:42:45 Readind End Time:2018-05-21 08:43:21
+G:\BaiduNetdiskDownload\data\company\New York.xls   Reading Start Time:2018-05-21 08:43:31 Readind End Time:2018-05-21 09:08:42
+G:\BaiduNetdiskDownload\data\company\North Carolina.xls   Reading Start Time:2018-05-21 09:08:52 Readind End Time:2018-05-21 09:19:45
+G:\BaiduNetdiskDownload\data\company\North Dokota.xls   Reading Start Time:2018-05-21 09:19:55 Readind End Time:2018-05-21 09:19:59
+G:\BaiduNetdiskDownload\data\company\Ohio.xls   Reading Start Time:2018-05-21 09:20:09 Readind End Time:2018-05-21 09:30:50
+G:\BaiduNetdiskDownload\data\company\Oklahoma.xls   Reading Start Time:2018-05-21 09:31:00 Readind End Time:2018-05-21 09:32:43
+G:\BaiduNetdiskDownload\data\company\Oregan.xls   Reading Start Time:2018-05-21 09:32:53 Readind End Time:2018-05-21 09:35:58
+G:\BaiduNetdiskDownload\data\company\Rhode island.xls   Reading Start Time:2018-05-21 09:36:08 Readind End Time:2018-05-21 09:37:24
+G:\BaiduNetdiskDownload\data\company\South Carolina.xls   Reading Start Time:2018-05-21 09:37:34 Readind End Time:2018-05-21 09:38:44
+G:\BaiduNetdiskDownload\data\company\South Dakota.xls   Reading Start Time:2018-05-21 09:38:54 Readind End Time:2018-05-21 09:38:59
+G:\BaiduNetdiskDownload\data\company\Tennessee.xls   Reading Start Time:2018-05-21 10:54:24 Readind End Time:2018-05-21 11:07:17
+G:\BaiduNetdiskDownload\data\company\Texas.xls   Reading Start Time:2018-05-21 11:07:27 Readind End Time:2018-05-21 11:17:51
+G:\BaiduNetdiskDownload\data\company\Utah.xls   Reading Start Time:2018-05-21 11:18:01 Readind End Time:2018-05-21 11:20:41
+G:\BaiduNetdiskDownload\data\company\Vermont.xls   Reading Start Time:2018-05-21 11:20:51 Readind End Time:2018-05-21 11:20:59
+G:\BaiduNetdiskDownload\data\company\Virginia.xls   Reading Start Time:2018-05-21 11:21:09 Readind End Time:2018-05-21 11:25:47
+G:\BaiduNetdiskDownload\data\company\Washington.xls   Reading Start Time:2018-05-21 11:25:57 Readind End Time:2018-05-21 11:39:36
+G:\BaiduNetdiskDownload\data\company\West Virginia.xls   Reading Start Time:2018-05-21 11:39:46 Readind End Time:2018-05-21 11:40:04
+G:\BaiduNetdiskDownload\data\company\Wisconsin.xls   Reading Start Time:2018-05-21 11:40:14 Readind End Time:2018-05-21 11:44:03
+G:\BaiduNetdiskDownload\data\company\Wyoming.xls   Reading Start Time:2018-05-21 11:44:13 Readind End Time:2018-05-21 11:44:13
+G:\BaiduNetdiskDownload\data\firm\Hawaii.xls   Reading Start Time:2018-05-21 11:44:23 Readind End Time:2018-05-21 11:44:25
+G:\BaiduNetdiskDownload\data\firm\Idaho.xls   Reading Start Time:2018-05-21 11:44:35 Readind End Time:2018-05-21 11:45:18
+G:\BaiduNetdiskDownload\data\firm\Illinois.xls   Reading Start Time:2018-05-21 11:45:29 Readind End Time:2018-05-21 12:58:40
+G:\BaiduNetdiskDownload\data\firm\Indiana.xls   Reading Start Time:2018-05-21 12:58:50 Readind End Time:2018-05-21 13:38:09
+G:\BaiduNetdiskDownload\data\firm\Iowa.xls   Reading Start Time:2018-05-21 13:38:19 Readind End Time:2018-05-21 13:46:34
+G:\BaiduNetdiskDownload\data\firm\Kansas.xls   Reading Start Time:2018-05-21 13:46:44 Readind End Time:2018-05-21 14:09:13
+G:\BaiduNetdiskDownload\data\firm\Kentucky.xls   Reading Start Time:2018-05-21 14:09:23 Readind End Time:2018-05-21 14:50:28
+G:\BaiduNetdiskDownload\data\firm\Louisiana.xls   Reading Start Time:2018-05-21 14:50:38 Readind End Time:2018-05-21 15:09:04
+G:\BaiduNetdiskDownload\data\firm\Maine.xls   Reading Start Time:2018-05-21 15:09:14 Readind End Time:2018-05-21 15:23:52
+G:\BaiduNetdiskDownload\data\firm\Michigan.xls   Reading Start Time:2018-05-22 02:55:22 Readind End Time:2018-05-22 05:25:17
+G:\BaiduNetdiskDownload\data\fund\Colorado.xls   Reading Start Time:2018-05-22 02:23:50 Readind End Time:2018-05-22 06:17:47
+G:\BaiduNetdiskDownload\data\fund\Connecticut.xls   Reading Start Time:2018-05-22 06:17:57 Readind End Time:2018-05-22 09:47:55
+G:\BaiduNetdiskDownload\data\fund\Delaware.xls   Reading Start Time:2018-05-22 09:48:05 Readind End Time:2018-05-22 10:03:45
+G:\BaiduNetdiskDownload\data\firm\Minnesoda.xls   Reading Start Time:2018-05-22 05:25:27 Readind End Time:2018-05-22 12:30:04
+G:\BaiduNetdiskDownload\data\firm\Mississippi.xls   Reading Start Time:2018-05-22 12:30:14 Readind End Time:2018-05-22 12:42:55
+G:\BaiduNetdiskDownload\data\fund\Florida.xls   Reading Start Time:2018-05-22 10:03:55 Readind End Time:2018-05-22 14:08:49
+G:\BaiduNetdiskDownload\data\firm\Missouri.xls   Reading Start Time:2018-05-22 12:43:05 Readind End Time:2018-05-22 15:03:29
+G:\BaiduNetdiskDownload\data\firm\Montana.xls   Reading Start Time:2018-05-22 15:03:39 Readind End Time:2018-05-22 15:19:51
+G:\BaiduNetdiskDownload\data\firm\Nebraska.xls   Reading Start Time:2018-05-22 15:20:01 Readind End Time:2018-05-22 15:47:46
+G:\BaiduNetdiskDownload\data\firm\Nevada.xls   Reading Start Time:2018-05-22 15:47:56 Readind End Time:2018-05-22 17:28:04
+G:\BaiduNetdiskDownload\data\fund\Georgia.xls   Reading Start Time:2018-05-22 14:08:59 Readind End Time:2018-05-22 18:05:56
+G:\BaiduNetdiskDownload\data\fund\Hawaii.xls   Reading Start Time:2018-05-22 18:06:06 Readind End Time:2018-05-22 18:11:30
+G:\BaiduNetdiskDownload\data\fund\Idaho.xls   Reading Start Time:2018-05-22 18:11:40 Readind End Time:2018-05-22 18:20:41
+G:\BaiduNetdiskDownload\data\firm\New Hampshire.xls   Reading Start Time:2018-05-22 17:28:14 Readind End Time:2018-05-22 21:01:50
+G:\BaiduNetdiskDownload\data\fund\Illinois.xls   Reading Start Time:2018-05-22 18:20:51 Readind End Time:2018-05-22 22:41:09

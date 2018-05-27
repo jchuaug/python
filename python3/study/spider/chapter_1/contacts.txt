@@ -1,0 +1,3 @@
+PyCharm is an Integrated Development Environment (IDE) used in computer programming, specifically for the Python language. It is developed by the Czech company JetBrains.[2] It provides code analysis, a graphical debugger, an integrated unit tester, integration with version control systems (VCSes), and supports web development with Django.
+
+PyCharm is cross-platform, with Windows, macOS and Linux versions. The Community Edition is released under the Apache License,[3] and there is also Professional Edition released under a proprietary license - this has extra features.
