@@ -14,9 +14,9 @@ import python3.work.date_2018_4.excel.data_resolve_fund as solution3
 import python3.work.date_2018_4.excel.data_resolve_firm as solution2
 import python3.work.date_2018_4.excel.data_resolve_company as solution1
 # 读取文件
-file_directory_firm=r'G:\BaiduNetdiskDownload\data\firm\*.xls'
-file_directory_fund=r'G:\BaiduNetdiskDownload\data\fund\*.xls'
-file_directory_company=r'G:\BaiduNetdiskDownload\data\company\*.xls'
+file_directory_firm=[r'G:\BaiduNetdiskDownload\data\firm\*.xls',r'G:\BaiduNetdiskDownload\data\firm\california\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Maryland\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Washington\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Texas\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Tennessee\*.xls']
+file_directory_fund=[r'G:\BaiduNetdiskDownload\data\fund\*.xls',r'G:\BaiduNetdiskDownload\data\fund\california\*.xls',r'G:\BaiduNetdiskDownload\data\fund\Massachusetts\*.xls',r'G:\BaiduNetdiskDownload\data\fund\Pennsylvania\*.xls',r'G:\BaiduNetdiskDownload\data\fund\Texas\*.xls']
+file_directory_company=[r'G:\BaiduNetdiskDownload\data\company\*.xls',r'G:\BaiduNetdiskDownload\data\company\company190\*.xls',r'G:\BaiduNetdiskDownload\data\company\Pennsylvania\*.xls',r'G:\BaiduNetdiskDownload\data\company\California\*.xls']
 
 
 def main_file_resolver(directory):
@@ -24,7 +24,7 @@ def main_file_resolver(directory):
     for filename in glob.glob(directory):
         # print("调用循环体")
         path=filename
-        with open("log_laptop.txt", "r") as read_file:
+        with open("log.txt", "r") as read_file:
             name_resolved_file = read_file.read()
             if path in name_resolved_file:
                 print("文件", filename, "已被处理过，跳过")
@@ -49,8 +49,8 @@ def main_file_resolver(directory):
                     solution1.obtain_data(path)
                 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>处理", path, "文件结束，10s后开始处理下一文件>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
                 time_end = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                time.sleep(10)
-                with open("log_laptop.txt", "a") as write_file:
+                time.sleep(2)
+                with open("log.txt", "a") as write_file:
                     write_file.write(
                         "\n" + filename + "   Reading Start Time:" + str(time_start) + " Readind End Time:" + str(
                             time_end))
@@ -76,7 +76,10 @@ class MyThread(threading.Thread):
 # # t2.join()
 # # t3.join()
 # # print("Thread %s ended" % threading.current_thread().name)
-
-main_file_resolver(file_directory_company)
-# main_file_resolver(file_directory_firm)
-main_file_resolver(file_directory_fund)
+# for file in file_directory_fund:
+#     main_file_resolver(file)
+#
+# for file in file_directory_firm:
+#     main_file_resolver(file)
+for file in file_directory_company:
+    main_file_resolver(file)

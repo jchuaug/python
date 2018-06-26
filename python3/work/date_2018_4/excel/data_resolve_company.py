@@ -8,7 +8,7 @@ import time, datetime
 import re
 
 # 获取数据库连接
-conn = myconn.connect( user="root", password="Jackey123456", database="work_company")
+conn = myconn.connect( user="root", password="fanxing123456", database="work_company")
 cursor = conn.cursor()
 
 # 用于定位的数据关键字
@@ -18,7 +18,7 @@ index_key_firm = ['SIC Code', 'NAIC', 'Business Description', 'Alias(es)', 'Comp
                   'Current Private Equity Investors', 'Liabilities', 'Key Financials',
                   'Historical Private Equity Investors', 'Products', 'Company Officers', 'Current Operating Stage',
                   'Legal Counsel', 'Accountant', 'Post IPO Information', '   Ticker', '   Exchange', '   IPO Date',
-                  '   Amount Mil', '   Proceeds', '   Book Manager(s)', 'Last Available Sales Figure']
+                  '   Amount Mil', '   Proceeds', '   Book Manager(s)', 'Last Available Sales Figure','VE Industry Code']
 
 
 # 关键字位置类
@@ -40,6 +40,138 @@ class location():
 
     def get_index_key(self):
         return self.index_key
+
+def address_split(address):
+    # print("整理地址")
+    detail_loc=""
+    city=""
+    state=""
+    code=""
+    country=""
+    arr_address=str(address).split(",")
+    if len(arr_address)==3:
+        detail_loc = arr_address[0]
+        city = arr_address[1]
+        code = re.sub("\D", "", arr_address[2])
+        if code=="":
+            country=arr_address[2]
+        else:
+            if len(arr_address[2].split(code))==2:
+                state=arr_address[2].split(code)[0]
+                country=arr_address[2].split(code)[1]
+            else:
+                country = arr_address[2].split(code)[0]
+    elif len(arr_address)==2:
+        detail_loc=arr_address[0]
+        code=re.sub("\D", "", arr_address[1])
+        if code=="":
+            country=arr_address[1]
+        else:
+            if len( arr_address[1].split(code))==2:
+                state = arr_address[1].split(code)[0]
+                country = arr_address[1].split(code)[1]
+            else:
+                country = arr_address[1].split(code)[0]
+
+    elif len(arr_address)==1:
+        code = re.sub("\D", "", arr_address[0])
+        if code=="":
+            country = arr_address[0]
+        else:
+            if len(arr_address[0].split(code))==2:
+                state = arr_address[0].split(code)[0]
+                country = arr_address[0].split(code)[1]
+            else:
+                country = arr_address[0].split(code)[0]
+
+
+    result=[country,state,code,city,detail_loc]
+    # print(result)
+    return  result
+
+def init_company_info(dataset,location_list,company_name):
+    print("初始化数据")
+    address_detail=""
+    address_city=""
+    address_state=""
+    address_country=""
+    address_code=""
+    phone=""
+    fax=""
+    website=""
+    ve_industry_code=""
+    sic_code=""
+    naic=""
+    alias=""
+    found_date=""
+    found_year=""
+    found_month=""
+    found_day=""
+    company_status=""
+    current_operating_stage=""
+    pe_backed_status=""
+    total_funding_to_date=""
+    bussiness_description=""
+    basic_info=[]
+    address=dataset.iloc[0][0]
+    address_return=address_split(address)
+    address_country=address_return[0]
+    address_state=address_return[1]
+    address_code=address_return[2]
+    address_city=address_return[3]
+    address_detail=address_return[4]
+
+    contact_str=dataset.iloc[1][0]
+    print(contact_str)
+    contact_arr=contact_info_intercept(contact_str)
+    print(contact_arr)
+    phone=contact_arr[0]
+    fax=contact_arr[1]
+    website=contact_arr[2]
+    for loc in location_list:
+        row=loc.row
+        col=loc.col
+        if loc.get_index_key()=="VE Industry Code":
+            if str(dataset.iloc[row][col + 1]) != "nan":
+                ve_industry_code=dataset.iloc[row][col+1]
+                print("ve_industry_code:",ve_industry_code)
+        elif loc.get_index_key()=="SIC Code":
+            if str(dataset.iloc[row][col + 1]) != "nan":
+                sic_code=dataset.iloc[row][col+1]
+        elif loc.get_index_key() == "NAIC":
+            if str(dataset.iloc[row][col + 1]) != "nan":
+                naic=dataset.iloc[row][col+1]
+        elif loc.get_index_key() == "Alias(es)":
+            if str(dataset.iloc[row][col + 1]) != "nan":
+                alias=dataset.iloc[row][col + 1]
+        elif loc.get_index_key() == "Company Founded Date":
+            found_date=dataset.iloc[row][col+1]
+            if str(found_date)=="nan":
+                continue
+            else:
+                temp_arr=found_date.split("/")
+                found_year=temp_arr[2]
+                found_month=temp_arr[1]
+                found_day=temp_arr[0]
+        elif loc.get_index_key() == "Business Description":
+            if str(dataset.iloc[row+1][col]) != "nan":
+                bussiness_description=dataset.iloc[row+1][col]
+        elif loc.get_index_key() == "Company Status":
+            if str(dataset.iloc[row][col + 1]) != "nan":
+                company_status=str(dataset.iloc[row][col+1])
+        elif loc.get_index_key() == "Current Operating Stage":
+            if str(dataset.iloc[row][col + 1]) != "nan":
+                current_operating_stage=dataset.iloc[row][col+1]
+        elif loc.get_index_key() == "PE Backed Status":
+            if str(dataset.iloc[row][col+1])!="nan":
+                pe_backed_status =dataset.iloc[row][col+1]
+        elif loc.get_index_key() == "Total Funding to Date":
+            if str(dataset.iloc[row][col + 1]) != "nan":
+                total_funding_to_date=dataset.iloc[row][col+1]
+    init_arr=[company_name,address_country,address_state,address_city,address_detail,address_code,phone,fax,website,ve_industry_code,sic_code,naic,bussiness_description,found_date,found_year,found_month,found_day,alias,company_status,pe_backed_status,current_operating_stage,total_funding_to_date]
+    print(init_arr)
+    return  init_arr
+
 
 
 # 更新数据，简单更新方式一，即：数据唯一而且数据位置在关键字位置右边,且要更新的数据类类型为str
@@ -148,11 +280,11 @@ def update_info_complex_inv_rounds(dataset, location_value, tablename, company_i
     for a in arr:
         for x in range(len(a)):
             if str(a[x]) == "nan" and (x == 13 or x == 14):
-                a[x] = '0.0'
+                a[x] = ''
             elif str(a[x]) == "nan":
                 a[x] = ""
             elif a[x] == "-":
-                a[x] = '0.0'
+                a[x] = ''
             elif re.match(r'[0-9]+.[0-9]+\(e\)', str(a[x])):
                 a[x] = "".join(("".join(a[x].split("("))).split(")"))
     for a in arr:
@@ -219,9 +351,9 @@ def update_info_complex_merges_and_acquisitions(dataset, location_value, tablena
     for a in arr:
         for x in range(len(a)):
             if a[x] == "-" and x == 6:
-                a[x] = 0.0
+                a[x] = ""
             if str(a[x]) == "nan" and x == 6:
-                a[x] = 0.0
+                a[x] = ""
             elif str(a[x]) == "nan":
                 a[x] = ""
             elif a[x] == "-":
@@ -277,7 +409,7 @@ def update_info_complex_curren_private_equity_investors(dataset, location_value,
     # 检索结束，输出检索结果
     rounds = []
     for a, r in zip(arr, arr_round):
-        rounds_item = ["", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        rounds_item = ["", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0,0, 0, 0, 0, 0,0, 0, 0, 0, 0,0, 0, 0, 0, 0,0, 0, 0, 0, 0]
         for i in range(len(r)):
             rounds_item[int(r[i]) + 3] = 1
         rounds_item[0] = a[0]
@@ -293,19 +425,21 @@ def update_info_complex_curren_private_equity_investors(dataset, location_value,
         # 数据库中数据不存在
         if len(result2) == 0:
             cursor.execute(
-                "insert into participation_round (company_id,company_name,firm, fund, round1,round2,round3,round4,round5,round6,round7,round8,round9,round10,round11,round12,round13,round14,round15,round16,round17,round18,round19,round20,round21,round22,round23,round24,round25) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                "insert into participation_round (company_id,company_name,firm, fund, round1,round2,round3,round4,round5,round6,round7,round8,round9,round10,round11,round12,round13,round14,round15,round16,round17,round18,round19,round20,round21,round22,round23,round24,round25,round26,round27,round28,round29,round30,round31,round32,round33,round34,round35,round36,round37,round38,round39,round40,round41,round42,round43,round44,round45,round46,round47,round48,round49,round50) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 r)
             # [a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],a[13],a[14]]
             conn.commit()
 
         else:
 
-            query = "update participation_round set round1='%s',round2='%s',round3='%s',round4='%s',round5='%s',round6='%s',round7='%s',round8='%s',round9='%s',round10='%s',round11='%s',round12='%s',round13='%s',round14='%s',round15='%s',round16='%s',round17='%s',round18='%s',round19='%s',round20='%s',round21='%s',round22='%s',round23='%s',round24='%s',round25='%s' where (company_id='%s' and firm='%s' and fund='%s')"
+            query = "update participation_round set round1='%s',round2='%s',round3='%s',round4='%s',round5='%s',round6='%s',round7='%s',round8='%s',round9='%s',round10='%s',round11='%s',round12='%s',round13='%s',round14='%s',round15='%s',round16='%s',round17='%s',round18='%s',round19='%s',round20='%s',round21='%s',round22='%s',round23='%s',round24='%s',round25='%s' ,round26='%s',round27='%s',round28='%s',round29='%s',round30='%s',round31='%s',round32='%s',round33='%s',round34='%s',round35='%s',round36='%s',round37='%s',round38='%s',round39='%s',round40='%s',round41='%s',round42='%s',round43='%s',round44='%s',round45='%s',round46='%s',round47='%s',round48='%s',round49='%s',round50='%s' where (company_id='%s' and firm='%s' and fund='%s')"
 
             try:
                 cursor.execute(query % (
                     r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15], r[16], r[17], r[18],
-                    r[19], r[20], r[21], r[22], r[23], r[24], r[25], r[26], r[27], r[28],
+                    r[19], r[20], r[21], r[22], r[23], r[24], r[25], r[26], r[27], r[28],r[29], r[30], r[31], r[32], r[33],
+                    r[34], r[35], r[36], r[37], r[38],r[39], r[40], r[41], r[42], r[43],r[44], r[45], r[46], r[47], r[48],
+                    r[49], r[50], r[51], r[52], r[53],
                     r[0], pymysql.escape_string(r[2]), pymysql.escape_string(r[3])))
                 conn.commit()
             except Exception as e:
@@ -368,7 +502,7 @@ def update_info_complex_historical_private_investors(dataset, location_value, ta
     while str(dataset.iloc[row, col]) != "nan":
         firm = dataset.iloc[row, col]
         fund = dataset.iloc[row, col + 1]
-        fund_stage = dataset.iloc[row, col + 2]
+        fund_stage = str(dataset.iloc[row, col + 2])
         still_in_portfolio = dataset.iloc[row, col + 3]
         participation_round = str(dataset.iloc[row, col + 4]).split(",")
         arr.append([company_id, company_name, firm, fund, fund_stage, still_in_portfolio])
@@ -376,7 +510,8 @@ def update_info_complex_historical_private_investors(dataset, location_value, ta
         row = row + 1
     rounds = []
     for a, r in zip(arr, round_arr):
-        rounds_item = ["", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        rounds_item = ["", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for i in range(len(r)):
             rounds_item[int(r[i]) + 3] = 1
         rounds_item[0] = a[0]
@@ -386,24 +521,26 @@ def update_info_complex_historical_private_investors(dataset, location_value, ta
         rounds.append(rounds_item)
     for r in rounds:
         cursor.execute(
-            "select participation_history_id from participation_round_history  where company_id=%s and firm=%s and fund=%s",
+            "select participation_history_id from participation_history  where company_id=%s and firm=%s and fund=%s",
             (r[0], r[2], r[3],))
         result2 = cursor.fetchall()
         # 数据库中数据不存在
         if len(result2) == 0:
             cursor.execute(
-                "insert into participation_history (company_id,company_name,firm, fund, round1,round2,round3,round4,round5,round6,round7,round8,round9,round10,round11,round12,round13,round14,round15,round16,round17,round18,round19,round20,round21,round22,round23,round24,round25) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                "insert into participation_history (company_id,company_name,firm, fund, round1,round2,round3,round4,round5,round6,round7,round8,round9,round10,round11,round12,round13,round14,round15,round16,round17,round18,round19,round20,round21,round22,round23,round24,round25,round26,round27,round28,round29,round30,round31,round32,round33,round34,round35,round36,round37,round38,round39,round40,round41,round42,round43,round44,round45,round46,round47,round48,round49,round50) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 r)
             # [a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],a[13],a[14]]
             conn.commit()
 
         else:
 
-            query = "update participation_history set round1='%s',round2='%s',round3='%s',round4='%s',round5='%s',round6='%s',round7='%s',round8='%s',round9='%s',round10='%s',round11='%s',round12='%s',round13='%s',round14='%s',round15='%s',round16='%s',round17='%s',round18='%s',round19='%s',round20='%s',round21='%s',round22='%s',round23='%s',round24='%s',round25='%s' where (company_id='%s' and firm='%s' and fund='%s')"
+            query = "update participation_history set round1='%s',round2='%s',round3='%s',round4='%s',round5='%s',round6='%s',round7='%s',round8='%s',round9='%s',round10='%s',round11='%s',round12='%s',round13='%s',round14='%s',round15='%s',round16='%s',round17='%s',round18='%s',round19='%s',round20='%s',round21='%s',round22='%s',round23='%s',round24='%s',round25='%s',round26='%s',round27='%s',round28='%s',round29='%s',round30='%s',round31='%s',round32='%s',round33='%s',round34='%s',round35='%s',round36='%s',round37='%s',round38='%s',round39='%s',round40='%s',round41='%s',round42='%s',round43='%s',round44='%s',round45='%s',round46='%s',round47='%s',round48='%s',round49='%s',round50='%s' where (company_id='%s' and firm='%s' and fund='%s')"
             try:
                 cursor.execute(query % (
                     r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15], r[16], r[17], r[18],
-                    r[19], r[20], r[21], r[22], r[23], r[24], r[25], r[26], r[27], r[28],
+                    r[19], r[20], r[21], r[22], r[23], r[24], r[25], r[26], r[27], r[28],r[29], r[30], r[31], r[32], r[33],
+                    r[34], r[35], r[36], r[37], r[38],r[39], r[40], r[41], r[42], r[43],r[44], r[45], r[46], r[47], r[48],
+                    r[49], r[50], r[51], r[52], r[53],
                     r[0], pymysql.escape_string(r[2]), pymysql.escape_string(r[3])))
                 conn.commit()
             except Exception as e:
@@ -424,12 +561,12 @@ def update_info_complex_historical_private_investors(dataset, location_value, ta
             # [a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],a[13],a[14]]
             conn.commit()
             cursor.execute(
-                "select id from participation_history  where company_id=%s and firm=%s and fund=%s",
+                "select participation_history_id from participation_history  where company_id=%s and firm=%s and fund=%s",
                 (r[0], r[2], r[3],))
             result3 = cursor.fetchall()
             participation_round_history_id = result3[0][0]
 
-            query = "update historical_investors set participation_history='%s' where (company_id='%s' and firm='%s' and fund='%s')"
+            query = "update historical_investors set participation_history_id='%s' where (company_id='%s' and firm='%s' and fund='%s')"
 
             try:
                 cursor.execute(
@@ -516,7 +653,7 @@ def update_info_complex_company_officers(dataset, location_value, tablename, com
 
         # 插入数据库操作
         cursor.execute(
-            "select officers_id from company_officers where (company_id=%s and officer_name=%s)",
+            "select officers_id from officers where (company_id=%s and officer_name=%s)",
             (a[0], a[2],))
         result = cursor.fetchall()
         # 数据库中数据不存在
@@ -623,7 +760,7 @@ def update_info_complex_key_financials_income(dataset, location_value, tablename
             if x>2:
                 a[x]="".join(str(a[x]).split(","))
             if a[x] == "-":
-                a[x] = 0.0
+                a[x] = ""
     # 数据库插入操作
     for a in arr:
         # 插入数据库操作
@@ -702,7 +839,7 @@ def update_info_complex_key_financials_assets(dataset, location_value, tablename
             if x>2:
                 a[x]="".join(str(a[x]).split(","))
             if a[x] == "-":
-                a[x] = 0.0
+                a[x] = ""
 
     # 数据库插入操作
     for a in arr:
@@ -778,7 +915,7 @@ def update_info_complex_key_financials_liabilities(dataset, location_value, tabl
             if x>2:
                 a[x]="".join(str(a[x]).split(","))
             if a[x] == "-":
-                a[x] = 0.0
+                a[x] = ""
     # 数据库插入操作
     for a in arr:
         # 插入数据库操作
@@ -837,6 +974,8 @@ def contact_info_intercept(contact_info):
             else:
                 if r == "VE Industry Code":  # 如果是这个值说明没有联系方式信息
                     arr[2] = ""
+                else:arr[2]=r
+
         return arr
 
 
@@ -858,13 +997,13 @@ def obtain_data(path):
             location_list = get_col_row(index_key_firm, data, rows, cols)
             # 建立关键字索引
             print("检索%s的第%d张sheet" % (path, count + 1))
-            conn = myconn.connect( user="root", password="Jackey123456", database="work_company")
+            conn = myconn.connect( user="root", password="fanxing123456", database="work_company")
             cursor = conn.cursor()
             # 根据表的固定位置的数据插入首次数据
             company_name = book.sheets()[count].row(0)[0].value
+            init_arr = init_company_info(origin_data, location_list, company_name)
             excel_id = book.sheets()[count].row(0)[3].value
-            company_founded_date = ""
-            ve_industry_code = ""
+            found_date = ""
             file_info = path + "--->" + str(count+1)
             print("写入%s的数据到数据库......" % (company_name))
             for loc in location_list:
@@ -872,33 +1011,25 @@ def obtain_data(path):
                     row = loc.row
                     col = loc.col + 1
                     if str(origin_data.iloc[row][col]) != "nan":
-                        company_founded_date = origin_data.iloc[row][col]
-                elif loc.get_index_key() == "VE Industry Code":
-                    row = loc.row
-                    col = loc.col + 1
-                    if str(origin_data.iloc[row][col]) != "nan":
-                        ve_industry_code = origin_data.iloc[row][col]
+                        found_date = origin_data.iloc[row][col]
 
-            cursor.execute("select company_id,file_info from company_info where name=%s and company_founded_date=%s",
-                           (book.sheets()[count].row(0)[0].value, company_founded_date,))
+            cursor.execute("select company_id,file_info from company_info where name=%s and found_date=%s",
+                           (book.sheets()[count].row(0)[0].value, found_date,))
 
             company_id = 0
             result = cursor.fetchall()
             # 数据库中没有公司信息，插入一条新的记录
             if len(result) == 0:
-                # print("----------初次创建数据库，插入固定项的数据-------------------------------------------------------")
-                contact_array = contact_info_intercept(origin_data.iloc[1, 0])
-                # print(contact_array[0],contact_array[1],contact_array[2])
-                # print(book.sheets()[count].row(0)[0].value)
+                excel_id=book.sheets()[count].row(0)[3].value
+                init_arr.append(excel_id)
+                init_arr.append(file_info)
+            #company_name,address_country,address_state,address_city,address_detail,address_code,phone,fax,website,ve_industry_code,sic_code,naic,bussiness_description,found_date,found_year,found_month,found_day,alias,company_status,pe_backed_status,current_operating_stage,total_funding_to_date
                 cursor.execute(
-                    "insert into company_info (excel_id,name,address,contact_info_phone,contact_info_fax,contact_info_website,ve_industry_code,company_founded_date,file_info) values(%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                    [book.sheets()[count].row(0)[3].value, book.sheets()[count].row(0)[0].value, origin_data.iloc[0, 0],
-                     contact_array[0], contact_array[1], contact_array[2], ve_industry_code, company_founded_date,
-                     file_info])
+                    "insert into company_info (name,address_country,address_state,address_city,address_detail,address_code,phone,fax,website,ve_industry_code,sic_code,naic,bussiness_description,found_date,found_year,found_month,found_day,alias,company_status,pe_backed_status,current_operating_stage,total_funding_to_date,excel_id,file_info) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",init_arr)
                 conn.commit()
                 # 初次创建数据信息后更新整个表的数据
-                cursor.execute("select company_id,file_info from company_info where name=%s and company_founded_date=%s",
-                               (book.sheets()[count].row(0)[0].value, company_founded_date,))
+                cursor.execute("select company_id,file_info from company_info where name=%s and found_date=%s",
+                               (company_name, found_date,))
                 result = cursor.fetchall()
                 company_id = result[0][0]
             else:
@@ -906,7 +1037,8 @@ def obtain_data(path):
                 path_before = result[0][1]
                 # print("数据库中已有对应的company的信息，跳过")
                 if file_info in path_before:
-                    pass
+                    print("数据库中已有对应的company的信息，跳过")
+                    continue
 
                 else:
                     # print("数据库中已有对应的firm的信息，执行更新")
@@ -926,17 +1058,9 @@ def obtain_data(path):
 
             # print("----------更新%s的数据-------------------------------------------------------"%(company_name))
             for loc in location_list:
-                if loc.get_index_key() == "SIC Code":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "sic_code",
-                                             company_id)
-                elif loc.get_index_key() == "NAIC":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "naic",
-                                             company_id)
-                elif loc.get_index_key() == "Last Available Sales Figure":
+
+                if loc.get_index_key() == "Last Available Sales Figure":
                     update_info_simple_1_str(origin_data, loc, "company_info", "last_avaliable_sales_figure",
-                                             company_id)
-                elif loc.get_index_key() == "Current Operating Stage":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "current_operating_status",
                                              company_id)
                 elif loc.get_index_key() == "Legal Counsel":
                     update_info_simple_1_str(origin_data, loc, "company_info", "legal_counsel",
@@ -968,23 +1092,8 @@ def obtain_data(path):
                 elif loc.get_index_key() == "Business Description":
                     update_info_simple_2_longstr(origin_data, loc, "company_info", "bussiness_description",
                                                  company_id)
-                elif loc.get_index_key() == "Alias(es)":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "alias",
-                                             company_id)
-                elif loc.get_index_key() == "Company Status":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "company_status",
-                                             company_id)
-                elif loc.get_index_key() == "Current Operating Stage":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "operating_stage",
-                                             company_id)
-                elif loc.get_index_key() == "PE Backed Status":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "pe_backed_status",
-                                             company_id)
                 elif loc.get_index_key() == "# of Employees":
                     update_info_simple_1_int(origin_data, loc, "company_info", "num_of_employees",
-                                             company_id)
-                elif loc.get_index_key() == "Total Funding to Date":
-                    update_info_simple_1_str(origin_data, loc, "company_info", "total_funding_to_date",
                                              company_id)
                 elif loc.get_index_key() == "Investment Rounds":
                     update_info_complex_inv_rounds(origin_data, loc, "company_investment_rounds", company_id,

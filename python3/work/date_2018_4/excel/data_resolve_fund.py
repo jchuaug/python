@@ -8,7 +8,7 @@ import time, datetime
 import re
 
 # 获取数据库连接
-conn = myconn.connect( user="root", password="Jackey123456", database="work_fund")
+conn = myconn.connect( user="root", password="fanxing123456", database="work_fund")
 cursor = conn.cursor()
 
 # 用于定位的数据关键字
@@ -18,15 +18,14 @@ index_key_firm = ['Management Firm:', 'Vintage Year:', 'Fund Stage:', 'Fund Rais
                   'Fund Stage Breakdown', 'Status Breakdown', 'Year Breakdown', 'Top Co-Investors',
                   'Direct Investments', 'Executives', 'Other Funds Managed by Firm', 'Known LP Investors']
 
-index_key_country_name = ['Canada', 'United States', 'United States', 'United Kingdom', 'Sweden', 'Switzerland',
-                          'Cayman Islands',
-                          'Singapore', 'Argentina', 'Mexico', 'Italy', 'Poland', 'Romania', 'Czech Republic', 'Ukraine',
-                          'Utd. Arab Em.',
-                          'Colombia', 'Turkey', 'Channel Islands', 'Austria', 'Luxembourg', 'Russia', 'Taiwan',
-                          'Norway',
-                          'Hong Kong', 'Brazil', 'Singapore', 'Japan', 'India', 'Mauritius', 'Netherlands', 'France',
-                          'Israel', 'Bahamas',
-                          'Spain', 'Germany', 'Brazil', 'China', 'France', ]
+index_key_country_name = ['Canada', 'United States', 'United States', 'United Kingdom', 'Sweden', 'Switzerland','Cayman Islands',
+                          'Singapore', 'Argentina', 'Mexico', 'Italy', 'Poland', 'Romania', 'Czech Republic', 'Ukraine','Utd. Arab Em.',
+                          'Colombia', 'Turkey', 'Channel Islands', 'Austria', 'Luxembourg','Russia','Taiwan','Norway',
+                          'Hong Kong', 'Brazil', 'Singapore', 'Japan', 'India', 'Mauritius', 'Netherlands', 'France','Israel','Bahamas',
+                          'Spain', 'Germany', 'Brazil', 'China', 'France','Australia','South Korea','Ireland','Saudi Arabia','Belgium',
+                          'Denmark','Uruguay','Finland','New Zealand', 'Portugal','Hungary','Bermuda','Senegal',
+                          'Thailand','Vietnam','Estonia','Lebanon','Venezuela','Vietnam','Latvia','Malta','Chile','South Africa','Jordan','Egypt',
+                          'Kazakhstan','Bahrain']
 
 
 # 关键字位置类
@@ -328,10 +327,10 @@ def formating_and_restore_investment_profile_state_breakdown(dataset, loc, loc_l
             total_row = loc_temp.row
             total_col = loc_temp.col + 1
             break
-    num_of_company_total = dataset.iloc[total_row][total_col]
-    sum_inv_total = dataset.iloc[total_row][total_col + 1]
-    avg_per_company_total = dataset.iloc[total_row][total_col + 2]
-    percent_of_inv_total = dataset.iloc[total_row][total_col + 3]
+    num_of_company_total = "".join(str(dataset.iloc[total_row][total_col]).split(","))
+    sum_inv_total = "".join(str(dataset.iloc[total_row][total_col + 1]).split(","))
+    avg_per_company_total = "".join(str(dataset.iloc[total_row][total_col + 2]).split(","))
+    percent_of_inv_total = "".join(str(dataset.iloc[total_row][total_col + 3]).split(","))
     state_name = ""
     num_of_company = ""
     sum_inv = ""
@@ -340,10 +339,10 @@ def formating_and_restore_investment_profile_state_breakdown(dataset, loc, loc_l
 
     while str(dataset.iloc[row][col]) != "nan":
         state_name = dataset.iloc[row][col]
-        num_of_company = dataset.iloc[row][col + 1]
-        sum_inv = dataset.iloc[row][col + 2]
-        avg_per_company = dataset.iloc[row][col + 3]
-        percent_of_inv = dataset.iloc[row][col + 4]
+        num_of_company = "".join(str(dataset.iloc[row][col + 1]).split(","))
+        sum_inv = "".join(str(dataset.iloc[row][col + 2]).split(","))
+        avg_per_company = "".join(str(dataset.iloc[row][col + 3]).split(","))
+        percent_of_inv = "".join(str(dataset.iloc[row][col + 4]).split(","))
         arr.append(["", fund_name, num_of_company_total, sum_inv_total, avg_per_company_total, percent_of_inv_total,
                     state_name,
                     num_of_company, sum_inv, avg_per_company, percent_of_inv])
@@ -352,9 +351,7 @@ def formating_and_restore_investment_profile_state_breakdown(dataset, loc, loc_l
     for a in arr:
         for i in range(len(a)):
             if a[i] == "-":
-                a[i] = '0'
-            elif "," in str(a[i]) and i != 4:
-                a[i] = "".join(str(a[i]).split(","))
+                a[i] = ''
 
     cursor.execute("select fund_id from fund_info where fund_id=%s", (fund_id,))
     result = cursor.fetchall()
@@ -402,10 +399,10 @@ def formating_and_restore_investment_profile_industry_breakdown(dataset, loc, lo
             total_row = loc_temp.row
             total_col = loc_temp.col + 1
             break
-    num_of_company_total = dataset.iloc[total_row][total_col]
-    sum_inv_total = dataset.iloc[total_row][total_col + 1]
-    avg_per_company_total = dataset.iloc[total_row][total_col + 2]
-    percent_of_inv_total = dataset.iloc[total_row][total_col + 3]
+    num_of_company_total = "".join(str(dataset.iloc[total_row][total_col]).split(","))
+    sum_inv_total = "".join(str(dataset.iloc[total_row][total_col + 1]).split(","))
+    avg_per_company_total = "".join(str(dataset.iloc[total_row][total_col + 2]).split(","))
+    percent_of_inv_total = "".join(str(dataset.iloc[total_row][total_col + 3]).split(","))
     industry_name = ""
     num_of_company = ""
     sum_inv = ""
@@ -414,10 +411,10 @@ def formating_and_restore_investment_profile_industry_breakdown(dataset, loc, lo
 
     while str(dataset.iloc[row][col]) != "nan":
         industry_name = dataset.iloc[row][col]
-        num_of_company = dataset.iloc[row][col + 1]
-        sum_inv = dataset.iloc[row][col + 2]
-        avg_per_company = dataset.iloc[row][col + 3]
-        percent_of_inv = dataset.iloc[row][col + 4]
+        num_of_company = "".join(str(dataset.iloc[row][col + 1]).split(","))
+        sum_inv = "".join(str(dataset.iloc[row][col + 2]).split(","))
+        avg_per_company = "".join(str(dataset.iloc[row][col + 3]).split(","))
+        percent_of_inv = "".join(str(dataset.iloc[row][col + 4]).split(","))
         arr.append(["", fund_name, num_of_company_total, sum_inv_total, avg_per_company_total, percent_of_inv_total,
                     industry_name,
                     num_of_company, sum_inv, avg_per_company, percent_of_inv])
@@ -426,9 +423,8 @@ def formating_and_restore_investment_profile_industry_breakdown(dataset, loc, lo
     for a in arr:
         for i in range(len(a)):
             if a[i] == "-":
-                a[i] = '0'
-            elif "," in str(a[i]) and i != 4:
-                a[i] = "".join(str(a[i]).split(","))
+                a[i] = ''
+
     # for a in arr:
     #     print(a)
     cursor.execute("select fund_id from fund_info where fund_id=%s", (fund_id,))
@@ -478,10 +474,10 @@ def formating_and_restore_investment_profile_nation_breakdown(dataset, loc, loc_
             total_row = loc_temp.row
             total_col = loc_temp.col + 1
             break
-    num_of_company_total = dataset.iloc[total_row][total_col]
-    sum_inv_total = dataset.iloc[total_row][total_col + 1]
-    avg_per_company_total = dataset.iloc[total_row][total_col + 2]
-    percent_of_inv_total = dataset.iloc[total_row][total_col + 3]
+    num_of_company_total = "".join(str(dataset.iloc[total_row][total_col]).split(","))
+    sum_inv_total = "".join(str(dataset.iloc[total_row][total_col + 1]).split(","))
+    avg_per_company_total = "".join(str(dataset.iloc[total_row][total_col + 2]).split(","))
+    percent_of_inv_total = "".join(str(dataset.iloc[total_row][total_col + 3]).split(","))
     nation_name = ""
     num_of_company = ""
     sum_inv = ""
@@ -490,10 +486,10 @@ def formating_and_restore_investment_profile_nation_breakdown(dataset, loc, loc_
 
     while str(dataset.iloc[row][col]) != "nan":
         nation_name = dataset.iloc[row][col]
-        num_of_company = dataset.iloc[row][col + 1]
-        sum_inv = dataset.iloc[row][col + 2]
-        avg_per_company = dataset.iloc[row][col + 3]
-        percent_of_inv = dataset.iloc[row][col + 4]
+        num_of_company = "".join(str(dataset.iloc[row][col + 1]).split(","))
+        sum_inv = "".join(str(dataset.iloc[row][col + 2]).split(","))
+        avg_per_company = "".join(str(dataset.iloc[row][col + 3]).split(","))
+        percent_of_inv = "".join(str(dataset.iloc[row][col + 4]).split(","))
         arr.append(["", fund_name, num_of_company_total, sum_inv_total, avg_per_company_total, percent_of_inv_total,
                     nation_name,
                     num_of_company, sum_inv, avg_per_company, percent_of_inv])
@@ -502,11 +498,7 @@ def formating_and_restore_investment_profile_nation_breakdown(dataset, loc, loc_
     for a in arr:
         for i in range(len(a)):
             if a[i] == "-":
-                a[i] = '0'
-            elif "," in str(a[i]) and i != 4:
-                a[i] = "".join(str(a[i]).split(","))
-    # for a in arr:
-    #     print(a)
+                a[i] = ''
     cursor.execute("select fund_id from fund_info where fund_id=%s", (fund_id,))
     result = cursor.fetchall()
     # 数据库中没有firm信息，插入不成功
@@ -554,10 +546,10 @@ def formating_and_restore_investment_profile_stage_breakdown(dataset, loc, loc_l
             total_row = loc_temp.row
             total_col = loc_temp.col + 1
             break
-    num_of_company_total = dataset.iloc[total_row][total_col]
-    sum_inv_total = dataset.iloc[total_row][total_col + 1]
-    avg_per_company_total = dataset.iloc[total_row][total_col + 2]
-    percent_of_inv_total = dataset.iloc[total_row][total_col + 3]
+    num_of_company_total = "".join(str(dataset.iloc[total_row][total_col]).split(","))
+    sum_inv_total = "".join(str(dataset.iloc[total_row][total_col + 1]).split(","))
+    avg_per_company_total = "".join(str(dataset.iloc[total_row][total_col + 2]).split(","))
+    percent_of_inv_total = "".join(str(dataset.iloc[total_row][total_col + 3]).split(","))
     stage_name = ""
     num_of_company = ""
     sum_inv = ""
@@ -566,10 +558,10 @@ def formating_and_restore_investment_profile_stage_breakdown(dataset, loc, loc_l
 
     while str(dataset.iloc[row][col]) != "nan":
         stage_name = dataset.iloc[row][col]
-        num_of_company = dataset.iloc[row][col + 1]
-        sum_inv = dataset.iloc[row][col + 2]
-        avg_per_company = dataset.iloc[row][col + 3]
-        percent_of_inv = dataset.iloc[row][col + 4]
+        num_of_company = "".join(str(dataset.iloc[row][col + 1]).split(","))
+        sum_inv = "".join(str(dataset.iloc[row][col + 2]).split(","))
+        avg_per_company = "".join(str(dataset.iloc[row][col + 3]).split(","))
+        percent_of_inv = "".join(str(dataset.iloc[row][col + 4]).split(","))
         arr.append(["", fund_name, num_of_company_total, sum_inv_total, avg_per_company_total, percent_of_inv_total,
                     stage_name,
                     num_of_company, sum_inv, avg_per_company, percent_of_inv])
@@ -578,11 +570,7 @@ def formating_and_restore_investment_profile_stage_breakdown(dataset, loc, loc_l
     for a in arr:
         for i in range(len(a)):
             if a[i] == "-":
-                a[i] = '0'
-            elif "," in str(a[i]) and i != 4:
-                a[i] = "".join(str(a[i]).split(","))
-    # for a in arr:
-    #     print(a)
+                a[i] = ''
     cursor.execute("select fund_id from fund_info where fund_id=%s", (fund_id,))
     result = cursor.fetchall()
     # 数据库中没有firm信息，插入不成功
@@ -630,10 +618,10 @@ def formating_and_restore_investment_profile_status_breakdown(dataset, loc, loc_
             total_row = loc_temp.row
             total_col = loc_temp.col + 1
             break
-    num_of_company_total = dataset.iloc[total_row][total_col]
-    sum_inv_total = dataset.iloc[total_row][total_col + 1]
-    avg_per_company_total = dataset.iloc[total_row][total_col + 2]
-    percent_of_inv_total = dataset.iloc[total_row][total_col + 3]
+    num_of_company_total = "".join(str(dataset.iloc[total_row][total_col]).split(","))
+    sum_inv_total = "".join(str(dataset.iloc[total_row][total_col + 1]).split(","))
+    avg_per_company_total = "".join(str(dataset.iloc[total_row][total_col + 2]).split(","))
+    percent_of_inv_total = "".join(str(dataset.iloc[total_row][total_col + 3]).split(","))
     status_name = ""
     num_of_company = ""
     sum_inv = ""
@@ -642,10 +630,10 @@ def formating_and_restore_investment_profile_status_breakdown(dataset, loc, loc_
 
     while str(dataset.iloc[row][col]) != "nan":
         status_name = dataset.iloc[row][col]
-        num_of_company = dataset.iloc[row][col + 1]
-        sum_inv = dataset.iloc[row][col + 2]
-        avg_per_company = dataset.iloc[row][col + 3]
-        percent_of_inv = dataset.iloc[row][col + 4]
+        num_of_company = "".join(str(dataset.iloc[row][col + 1]).split(","))
+        sum_inv = "".join(str(dataset.iloc[row][col + 2]).split(","))
+        avg_per_company = "".join(str(dataset.iloc[row][col + 3]).split(","))
+        percent_of_inv = "".join(str(dataset.iloc[row][col + 4]).split(","))
         arr.append(["", fund_name, num_of_company_total, sum_inv_total, avg_per_company_total, percent_of_inv_total,
                     status_name,
                     num_of_company, sum_inv, avg_per_company, percent_of_inv])
@@ -654,11 +642,7 @@ def formating_and_restore_investment_profile_status_breakdown(dataset, loc, loc_
     for a in arr:
         for i in range(len(a)):
             if a[i] == "-":
-                a[i] = '0'
-            elif "," in str(a[i]) and i != 4:
-                a[i] = "".join(str(a[i]).split(","))
-    # for a in arr:
-    #     print(a)
+                a[i] = ''
     cursor.execute("select fund_id from fund_info where fund_id=%s", (fund_id,))
     result = cursor.fetchall()
     # 数据库中没有firm信息，插入不成功
@@ -706,10 +690,10 @@ def formating_and_restore_investment_profile_year_breakdown(dataset, loc, loc_li
             total_row = loc_temp.row
             total_col = loc_temp.col + 1
             break
-    num_of_company_total = dataset.iloc[total_row][total_col]
-    sum_inv_total = dataset.iloc[total_row][total_col + 1]
-    avg_per_company_total = dataset.iloc[total_row][total_col + 2]
-    percent_of_inv_total = dataset.iloc[total_row][total_col + 3]
+    num_of_company_total = "".join(str(dataset.iloc[total_row][total_col]).split(","))
+    sum_inv_total = "".join(str(dataset.iloc[total_row][total_col + 1]).split(","))
+    avg_per_company_total = "".join(str(dataset.iloc[total_row][total_col + 2]).split(","))
+    percent_of_inv_total = "".join(str(dataset.iloc[total_row][total_col + 3]).split(","))
     year_name = ""
     num_of_company = ""
     sum_inv = ""
@@ -718,10 +702,10 @@ def formating_and_restore_investment_profile_year_breakdown(dataset, loc, loc_li
 
     while str(dataset.iloc[row][col]) != "nan":
         year_name = dataset.iloc[row][col]
-        num_of_company = dataset.iloc[row][col + 1]
-        sum_inv = dataset.iloc[row][col + 2]
-        avg_per_company = dataset.iloc[row][col + 3]
-        percent_of_inv = dataset.iloc[row][col + 4]
+        num_of_company = "".join(str(dataset.iloc[row][col + 1]).split(","))
+        sum_inv = "".join(str(dataset.iloc[row][col + 2]).split(","))
+        avg_per_company = "".join(str(dataset.iloc[row][col + 3]).split(","))
+        percent_of_inv = "".join(str(dataset.iloc[row][col + 4]).split(","))
         arr.append(
             ["", fund_name, num_of_company_total, sum_inv_total, avg_per_company_total, percent_of_inv_total, year_name,
              num_of_company, sum_inv, avg_per_company, percent_of_inv])
@@ -730,11 +714,7 @@ def formating_and_restore_investment_profile_year_breakdown(dataset, loc, loc_li
     for a in arr:
         for i in range(len(a)):
             if a[i] == "-":
-                a[i] = '0'
-            elif "," in str(a[i]) and i != 4:
-                a[i] = "".join(str(a[i]).split(","))
-    # for a in arr:
-    #     print(a)
+                a[i] = ''
     cursor.execute("select fund_id from fund_info where fund_id=%s", (fund_id,))
     result = cursor.fetchall()
     # 数据库中没有firm信息，插入不成功
@@ -840,8 +820,10 @@ def formating_and_restore_direct_investments(dataset, loc, fund_id, fund_name):
         arr.append(
             ["", fund_name, company_name, industry, still_in_portfolio, company_status, last_investment_date, location])
         row = row + 1
-    # for a in arr:
-    #     print(a)
+    for a in arr:
+       for i in range(len(a)):
+           if str(a[i])=="nan":
+               a[i]=""
     cursor.execute("select fund_id from fund_info where fund_id=%s", (fund_id,))
     result = cursor.fetchall()
     # 数据库中没有firm信息，插入不成功
@@ -991,7 +973,7 @@ def obtain_data(path):
     # 获取每个sheet的sheetname
     counts = len(book.sheets())
     # 获取数据库连接
-    conn = myconn.connect( user="root", password="Jackey123456", database="work_fund")
+    conn = myconn.connect( user="root", password="fanxing123456", database="work_fund")
     cursor = conn.cursor()
 
     for count in range(counts):

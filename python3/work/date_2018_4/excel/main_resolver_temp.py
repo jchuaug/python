@@ -14,9 +14,9 @@ import python3.work.date_2018_4.excel.data_resolve_fund as solution3
 import python3.work.date_2018_4.excel.data_resolve_firm as solution2
 import python3.work.date_2018_4.excel.data_resolve_company as solution1
 # 读取文件
-file_directory_firm=r'G:\BaiduNetdiskDownload\data\firm\*.xls'
-file_directory_fund=r'G:\BaiduNetdiskDownload\data\fund\*.xls'
-file_directory_company=r'G:\BaiduNetdiskDownload\data\company\*.xls'
+file_directory_firm=[r'G:\BaiduNetdiskDownload\data\firm\*.xls',r'G:\BaiduNetdiskDownload\data\firm\california\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Maryland\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Washington\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Texas\*.xls',r'G:\BaiduNetdiskDownload\data\firm\Tennessee\*.xls']
+file_directory_fund=[r'G:\BaiduNetdiskDownload\data\fund\*.xls',r'G:\BaiduNetdiskDownload\data\fund\california\*.xls',r'G:\BaiduNetdiskDownload\data\fund\Massachusetts\*.xls',r'G:\BaiduNetdiskDownload\data\fund\Pennsylvania\*.xls',r'G:\BaiduNetdiskDownload\data\fund\Texas\*.xls']
+file_directory_company=[r'G:\BaiduNetdiskDownload\data\company\*.xls',r'G:\BaiduNetdiskDownload\data\company\补company190\*.xls',r'G:\BaiduNetdiskDownload\data\company\Pennsylvania\*.xls',r'G:\BaiduNetdiskDownload\data\company\California\*.xls']
 
 
 def main_file_resolver(directory):
@@ -77,6 +77,10 @@ class MyThread(threading.Thread):
 # # t3.join()
 # # print("Thread %s ended" % threading.current_thread().name)
 
-main_file_resolver(file_directory_company)
-main_file_resolver(file_directory_firm)
-# main_file_resolver(file_directory_fund)
+# for file in file_directory_fund:
+#     main_file_resolver(file)
+
+for file in file_directory_firm:
+    main_file_resolver(file)
+# for file in file_directory_company:
+#     main_file_resolver(file)

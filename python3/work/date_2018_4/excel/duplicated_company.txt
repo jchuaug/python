@@ -1,6 +1,14 @@
-
-Duplicated info:|Company Name=HTG Molecular Diagnostics Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Arizona.xls--->41| |Path Now=G:\BaiduNetdiskDownload\data\company\Arizona.xls--->42|
-Duplicated info:|Company Name=Cardax Pharmaceuticals Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\firm\Hawaii.xls--->0| |Path Now=G:\BaiduNetdiskDownload\data\company\Hawaii.xls--->0|
-Duplicated info:|Company Name=Organogenesis Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Massachusetts.xls--->783| |Path Now=G:\BaiduNetdiskDownload\data\company\Massachusetts.xls--->784|
-Duplicated info:|Company Name=Bacterial BarCodes, Inc.| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Georgia.xls--->30| |Path Now=G:\BaiduNetdiskDownload\data\company\Texas.xls--->164|
-Duplicated info:|Company Name=Cardax Pharmaceuticals Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\firm\Hawaii.xls--->0 + G:\BaiduNetdiskDownload\data\company\Hawaii.xls--->0| |Path Now=G:\BaiduNetdiskDownload\data\firm\Hawaii.xls--->1|
+****************This is a log of filename of  duplicated company*******************
+Duplicated info:|Company Name=HTG Molecular Diagnostics Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Arizona.xls--->42| |Path Now=G:\BaiduNetdiskDownload\data\company\Arizona.xls--->43|
+Duplicated info:|Company Name=Accelerated Orthopedic Technologies Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Connecticut.xls--->2| |Path Now=G:\BaiduNetdiskDownload\data\company\Connecticut.xls--->3|
+Duplicated info:|Company Name=Organogenesis Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Massachusetts.xls--->784| |Path Now=G:\BaiduNetdiskDownload\data\company\Massachusetts.xls--->785|
+Duplicated info:|Company Name=Bacterial BarCodes, Inc.| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Georgia.xls--->31| |Path Now=G:\BaiduNetdiskDownload\data\company\Texas.xls--->164|
+Duplicated info:|Company Name=National Vascular Care, Inc.| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Pennsylvania\3.xls--->100| |Path Now=G:\BaiduNetdiskDownload\data\company\Pennsylvania\4.xls--->1|
+Duplicated info:|Company Name=Briggs Medical Service Co| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Pennsylvania\1.xls--->1| |Path Now=G:\BaiduNetdiskDownload\data\company\Pennsylvania\Pennsylvania.xls--->101|
+Duplicated info:|Company Name="A" Company Orthodontics, Inc.| |Path Before Override=G:\BaiduNetdiskDownload\data\company\California\c1.xls--->1| |Path Now=G:\BaiduNetdiskDownload\data\company\California\c18.xls--->1|
+Duplicated info:|Company Name=Cardax Pharmaceuticals Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Hawaii.xls--->1| |Path Now=G:\BaiduNetdiskDownload\data\firm\Hawaii.xls--->1|
+Duplicated info:|Company Name=Phoenix Rehabilitation and Health Services, Inc.| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Pennsylvania\4.xls--->75| |Path Now=G:\BaiduNetdiskDownload\data\company\Pennsylvania\4.xls--->76|
+Duplicated info:|Company Name=Cadient Group Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Pennsylvania\1.xls--->2| |Path Now=G:\BaiduNetdiskDownload\data\company\Pennsylvania\Pennsylvania.xls--->102|
+Duplicated info:|Company Name=10X Genomics Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\California\c1.xls--->2| |Path Now=G:\BaiduNetdiskDownload\data\company\California\c18.xls--->2|
+Duplicated info:|Company Name=Cagent Vascular LLC| |Path Before Override=G:\BaiduNetdiskDownload\data\company\Pennsylvania\1.xls--->3| |Path Now=G:\BaiduNetdiskDownload\data\company\Pennsylvania\Pennsylvania.xls--->103|
+Duplicated info:|Company Name=23andMe Inc| |Path Before Override=G:\BaiduNetdiskDownload\data\company\California\c1.xls--->3| |Path Now=G:\BaiduNetdiskDownload\data\company\California\c18.xls--->3|

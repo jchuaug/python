@@ -11,8 +11,14 @@ import pandas as pd
 import os
 import xlwt
 
-def write_to_excel(dbname):
-    conn = myconn.connect(user="root", password="Jackey123456", database=dbname)
+timestamp=str(time.strftime("%Y%m%d%H%M%S",time.localtime(time.time())))
+company_file_name=timestamp+"company"
+fund_file_name=timestamp+"fund"
+firm_file_name=timestamp+"firm"
+
+
+def write_to_excel(dbname,filename):
+    conn = myconn.connect(user="root", password="fanxing123456", database=dbname)
     cursor = conn.cursor()
     sql_1 = "select table_name from information_schema.tables where table_schema='%s' and table_type='base table'"
     cursor.execute(sql_1 % dbname)
@@ -21,7 +27,7 @@ def write_to_excel(dbname):
     for result in table_result:
         table_name_arr.append(result[0])
 
-    writer = pd.ExcelWriter(dbname + ".xlsx")
+    writer = pd.ExcelWriter(filename + ".xlsx")
     for table_name in table_name_arr:
         sql_2 = "select * from " + table_name
         cursor.execute(sql_2)
@@ -49,7 +55,6 @@ def write_to_excel(dbname):
         df.to_excel(writer, table_name, index=False)
     writer.save()
 
-
-write_to_excel("work_company")
-write_to_excel("work_firm")
-write_to_excel("work_fund")
+write_to_excel("work_company",company_file_name)
+write_to_excel("work_firm",firm_file_name)
+write_to_excel("work_fund",fund_file_name)
